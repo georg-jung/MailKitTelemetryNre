@@ -4,8 +4,6 @@ using MailKit.Net.Imap;
 using OpenTelemetry;
 using OpenTelemetry.Trace;
 
-Console.WriteLine("Hello, World!");
-
 async Task ConnectAsync()
 {
     using var c = new ImapClient();

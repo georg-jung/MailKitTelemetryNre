@@ -23,4 +23,5 @@ jobs:
         # Docker Hub image
         image: greenmail/standalone:latest
     steps:
+      - uses: actions/checkout@v4
       - run: dotnet run

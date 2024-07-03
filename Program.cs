@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Diagnostics;
 using MailKit.Net.Imap;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
 
 Console.WriteLine("Hello, World!");
 
@@ -12,6 +14,12 @@ async Task ConnectAsync()
 
 await ConnectAsync(); // this works
 Console.WriteLine("Connected to greenmail");
+
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("demo")
+    .AddSource(MailKit.Telemetry.ImapClient.ActivitySourceName)
+    .AddConsoleExporter()
+    .Build();
 
 var s = new ActivitySource("demo");
 s.StartActivity("test");

@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  workflow_call:
+  push:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_GENERATE_ASPNET_CERTIFICATE: false
+
+jobs:
+  ci:
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+    # Docker Hub image that `container-job` executes in
+    container: mcr.microsoft.com/dotnet/sdk:8.0
+
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      greenmail:
+        # Docker Hub image
+        image: greenmail:standalone
+    steps:
+      - run: dotnet run

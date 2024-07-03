@@ -21,6 +21,6 @@ jobs:
       # Label used to access the service container
       greenmail:
         # Docker Hub image
-        image: greenmail:standalone
+        image: greenmail/standalone:latest
     steps:
       - run: dotnet run
